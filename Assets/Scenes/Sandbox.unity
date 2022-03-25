@@ -420,6 +420,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4138840968546721295, guid: c5e21b5ae33ffc746918a9128f8bee4f, type: 3}
+      propertyPath: mainThrust
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138840968546721295, guid: c5e21b5ae33ffc746918a9128f8bee4f, type: 3}
+      propertyPath: pitchForce
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5456306466380189083, guid: c5e21b5ae33ffc746918a9128f8bee4f, type: 3}
       propertyPath: m_Name
       value: Rocket
