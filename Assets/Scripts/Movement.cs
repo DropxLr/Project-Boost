@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviour //original script from the GameDev.TV course
 {
     Rigidbody rb;
     public float mainThrust = 1000f;

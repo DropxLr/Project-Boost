@@ -9,10 +9,11 @@ public class MoveRocket : MonoBehaviour
     Vector3 pitch; // used for vertical pitch of rocket
 
     bool thrustEnabled; // the thrust button is pressed
+    bool pitchEnabled; // pitch is active
 
     Rigidbody rb;
     public float mainThrust = 1000f; //needs tuning with gravity, mass & drag
-    public float pitchForce = 1f; //use to tune the pitch of the rocket
+    public float pitchForce = 0.2f; //use to tune the pitch of the rocket
 
     private void Start()
     {
@@ -31,13 +32,21 @@ public class MoveRocket : MonoBehaviour
         controls.RocketMovement.Pitch.performed += cntxt => pitch = cntxt.ReadValue<Vector2>();
         controls.RocketMovement.Pitch.canceled += cntxt => pitch = Vector2.zero;
 
+        //Pitch - bool
+        controls.RocketMovement.Pitch.performed += cntxt => pitchEnabled = true;
+        controls.RocketMovement.Pitch.canceled += cntxt => pitchEnabled = false;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Pitch
-        GetComponent<Transform>().Rotate(Vector3.forward * pitch.y * pitchForce); // change magic numbers for variables 
+        if (pitchEnabled)
+        {
+            rb.freezeRotation = true; //freezes rotation (physics) so you can manually rotate
+            GetComponent<Transform>().Rotate(Vector3.back * pitch.x * pitchForce); // change magic numbers for variables 
+            rb.freezeRotation = false; //enables rotation again so that physics can apply rotation again
+        }
 
         //Thrust
         if (thrustEnabled)
