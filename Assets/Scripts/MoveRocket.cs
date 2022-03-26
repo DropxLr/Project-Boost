@@ -15,13 +15,17 @@ public class MoveRocket : MonoBehaviour
     public float mainThrust = 1000f; //needs tuning with gravity, mass & drag
     public float pitchForce = 0.2f; //use to tune the pitch of the rocket
 
+    AudioSource audioSource;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
     {
+
         controls = new RocketControls();
 
         //Thrust
@@ -52,7 +56,17 @@ public class MoveRocket : MonoBehaviour
         if (thrustEnabled)
         {
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
+        else
+        {
+            audioSource.Stop();
+        };
+
     }
 
     void OnEnable()
