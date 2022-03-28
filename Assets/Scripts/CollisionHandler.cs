@@ -13,17 +13,24 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Friendly");
                 break;
 
-            case "Fuel":
-                Debug.Log("Fuel");
-                break;
-
             case "Finish":
-                LoadNextScene();
+                StartSuccessSequence();
                 break;
 
             default: // is the result of colliding with anything untagged
                 StartCrashSequence();
                 break;
+        }
+
+        void StartSuccessSequence()
+        {
+            // need to add SFX & particle effect on success
+            GetComponent<MoveRocket>().enabled = false;
+            // using the util class to invoke a coroutine to delay the given function
+            Util.DelayedCall(this, loadDelay, () =>
+            {
+                LoadNextScene();
+            });
         }
 
         void StartCrashSequence()
