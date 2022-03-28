@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainThrust: 1000
   pitchForce: 0.2
+  engineThrust: {fileID: 8300000, guid: 2d90d6847e1a9bc41ae201463a6639fa, type: 3}
 --- !u!82 &1399473259
 AudioSource:
   m_ObjectHideFlags: 0
@@ -80,7 +81,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d90d6847e1a9bc41ae201463a6639fa, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -178,6 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c0721f3d4c6db4db55a89517d31ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDelay: 2
+  success: {fileID: 8300000, guid: b2f0925424933ea4db446270bc5dc52c, type: 3}
+  crashExplosion: {fileID: 8300000, guid: 6148e651f242db74986fec299b14827e, type: 3}
 --- !u!1 &5856183547239829092
 GameObject:
   m_ObjectHideFlags: 0

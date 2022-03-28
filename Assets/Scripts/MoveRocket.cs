@@ -16,6 +16,7 @@ public class MoveRocket : MonoBehaviour
     public float pitchForce = 0.2f; //use to tune the pitch of the rocket
 
     AudioSource audioSource;
+    public AudioClip engineThrust;
 
     private void Start()
     {
@@ -59,7 +60,7 @@ public class MoveRocket : MonoBehaviour
 
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(engineThrust);
             }
         }
         else

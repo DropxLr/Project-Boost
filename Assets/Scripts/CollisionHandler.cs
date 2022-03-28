@@ -4,10 +4,19 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     public float loadDelay = 2f;
+    public AudioClip success;
+    public AudioClip crashExplosion;
+
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision other) // behaviour when colliding with gameObjects 
     {
-        switch (other.gameObject.tag)
+        switch (other.gameObject.tag) //uses tags to trigger action
         {
             case "Friendly":
                 Debug.Log("Friendly");
@@ -22,9 +31,14 @@ public class CollisionHandler : MonoBehaviour
                 break;
         }
 
-        void StartSuccessSequence()
+        void StartSuccessSequence() // can trigger crash sound if it slips
         {
-            // need to add SFX & particle effect on success
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(success);
+            }
+
+            // need to amend SFX above & add particle effect on success
             GetComponent<MoveRocket>().enabled = false;
             // using the util class to invoke a coroutine to delay the given function
             Util.DelayedCall(this, loadDelay, () =>
@@ -35,8 +49,13 @@ public class CollisionHandler : MonoBehaviour
 
         void StartCrashSequence()
         {
-            // need to add SFX & particle effect on crash
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(crashExplosion);
+            }
+
             GetComponent<MoveRocket>().enabled = false;
+            // need to amend SFX & add particle effect on crash
             // using the util class to invoke a coroutine to delay the given function
             Util.DelayedCall(this, loadDelay, () =>
             {
