@@ -5,6 +5,13 @@ using UnityEngine;
 
 public static class Util
 {
+    // Use the following function to call the util class from another mono behaviour class
+    //
+    //     Util.DelayedCall(this, 1f, ()=>{
+    //     Debug.Log("delayed by 1 seconds");
+    //     }); 
+
+
     /// <summary>
     ///     Helper function to ovoid having to define a couroutine every time want to call an action after a delay
     /// </summary>
