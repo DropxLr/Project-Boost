@@ -30,7 +30,11 @@ public class CollisionHandler : MonoBehaviour
         {
             // need to add SFX & particle effect on crash
             GetComponent<MoveRocket>().enabled = false;
-            ReloadScene();
+            // using the util class to invoke a coroutine to delay the given function
+            Util.DelayedCall(this, loadDelay, () =>
+            {
+                ReloadScene();
+            });
         }
 
         void ReloadScene() //reloads current scene when colliding with anything untagged in the switch statements above
