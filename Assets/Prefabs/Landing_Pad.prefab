@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 637478092192404384}
   - component: {fileID: 637478092192404385}
   m_Layer: 0
-  m_Name: Landing Pad
+  m_Name: Landing_Pad
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
