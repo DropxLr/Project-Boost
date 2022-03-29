@@ -17,6 +17,7 @@ public class MoveRocket : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip engineThrust;
+    public ParticleSystem flameBooster;
 
     private void Start()
     {
@@ -61,11 +62,13 @@ public class MoveRocket : MonoBehaviour
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(engineThrust);
+                flameBooster.Play();
             }
         }
         else
         {
             audioSource.Stop();
+            flameBooster.Stop();
         };
 
     }

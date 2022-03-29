@@ -73,6 +73,7 @@ MonoBehaviour:
   mainThrust: 1000
   pitchForce: 0.2
   engineThrust: {fileID: 8300000, guid: 2d90d6847e1a9bc41ae201463a6639fa, type: 3}
+  flameBooster: {fileID: 2000143194454651691}
 --- !u!82 &1399473259
 AudioSource:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   loadDelay: 2
   success: {fileID: 8300000, guid: b2f0925424933ea4db446270bc5dc52c, type: 3}
   crashExplosion: {fileID: 8300000, guid: 6148e651f242db74986fec299b14827e, type: 3}
+  explosionParticles: {fileID: 4141999417155229646}
 --- !u!1 &5856183547239829092
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +736,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198009975391485926, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198059370558133848, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198393606974994562, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198859146066003590, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 199139269707214854, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -757,6 +775,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4587786598044862, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
   m_PrefabInstance: {fileID: 4306619371722696744}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4141999417155229646 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198009975391485926, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+  m_PrefabInstance: {fileID: 4306619371722696744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8807124147357248577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -770,6 +793,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7059637730117689194, guid: 437bccf10b365774bbd601db53f14b6d, type: 3}
       propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059637730117689194, guid: 437bccf10b365774bbd601db53f14b6d, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7059637730117689194, guid: 437bccf10b365774bbd601db53f14b6d, type: 3}
@@ -933,5 +960,10 @@ PrefabInstance:
 --- !u!4 &1805853492931927599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7149075803792568942, guid: 437bccf10b365774bbd601db53f14b6d, type: 3}
+  m_PrefabInstance: {fileID: 8807124147357248577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2000143194454651691 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7059637730117689194, guid: 437bccf10b365774bbd601db53f14b6d, type: 3}
   m_PrefabInstance: {fileID: 8807124147357248577}
   m_PrefabAsset: {fileID: 0}

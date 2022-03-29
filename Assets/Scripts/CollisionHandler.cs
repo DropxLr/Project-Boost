@@ -6,6 +6,7 @@ public class CollisionHandler : MonoBehaviour
     public float loadDelay = 2f;
     public AudioClip success;
     public AudioClip crashExplosion;
+    public ParticleSystem explosionParticles;
 
     AudioSource audioSource;
 
@@ -54,8 +55,9 @@ public class CollisionHandler : MonoBehaviour
             isTransitioning = true;
             audioSource.Stop();
             audioSource.PlayOneShot(crashExplosion);
+            explosionParticles.Play();
+
             GetComponent<MoveRocket>().enabled = false;
-            // need to amend SFX & add particle effect on crash
             // using the util class to invoke a coroutine to delay the given function
             Util.DelayedCall(this, loadDelay, () =>
             {
