@@ -9,6 +9,8 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
+    bool isTransitioning = false;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -16,6 +18,8 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other) // behaviour when colliding with gameObjects 
     {
+        if (isTransitioning) { return; } //stops triggering if sequence is already running
+
         switch (other.gameObject.tag) //uses tags to trigger action
         {
             case "Friendly":
@@ -33,11 +37,9 @@ public class CollisionHandler : MonoBehaviour
 
         void StartSuccessSequence() // can trigger crash sound if it slips
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(success);
-            }
-
+            isTransitioning = true;
+            audioSource.Stop();
+            audioSource.PlayOneShot(success);
             // need to amend SFX above & add particle effect on success
             GetComponent<MoveRocket>().enabled = false;
             // using the util class to invoke a coroutine to delay the given function
@@ -49,11 +51,9 @@ public class CollisionHandler : MonoBehaviour
 
         void StartCrashSequence()
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(crashExplosion);
-            }
-
+            isTransitioning = true;
+            audioSource.Stop();
+            audioSource.PlayOneShot(crashExplosion);
             GetComponent<MoveRocket>().enabled = false;
             // need to amend SFX & add particle effect on crash
             // using the util class to invoke a coroutine to delay the given function
