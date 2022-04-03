@@ -172,7 +172,7 @@ MonoBehaviour:
   mainThrust: 1000
   pitchForce: 0.2
   engineThrust: {fileID: 8300000, guid: 2d90d6847e1a9bc41ae201463a6639fa, type: 3}
-  flameBooster: {fileID: 2000143194454651691}
+  mainBooster: {fileID: 2000143194454651691}
   leftBooster: {fileID: 8495737519267008731}
   rightBooster: {fileID: 2550014339262570904}
 --- !u!82 &1399473259
