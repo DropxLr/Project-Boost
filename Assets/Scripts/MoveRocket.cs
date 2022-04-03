@@ -18,6 +18,8 @@ public class MoveRocket : MonoBehaviour
     AudioSource audioSource;
     public AudioClip engineThrust;
     public ParticleSystem flameBooster;
+    public ParticleSystem leftBooster;
+    public ParticleSystem rightBooster;
 
     private void Start()
     {
@@ -50,8 +52,9 @@ public class MoveRocket : MonoBehaviour
         if (pitchEnabled)
         {
             rb.freezeRotation = true; //freezes rotation (physics) so you can manually rotate
-            GetComponent<Transform>().Rotate(Vector3.back * pitch.x * pitchForce); // change magic numbers for variables 
+            GetComponent<Transform>().Rotate(Vector3.back * pitch.x * pitchForce); 
             rb.freezeRotation = false; //enables rotation again so that physics can apply rotation again
+            Debug.Log(pitch);
         }
 
         //Thrust

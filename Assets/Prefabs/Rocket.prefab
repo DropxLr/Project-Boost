@@ -173,6 +173,8 @@ MonoBehaviour:
   pitchForce: 0.2
   engineThrust: {fileID: 8300000, guid: 2d90d6847e1a9bc41ae201463a6639fa, type: 3}
   flameBooster: {fileID: 2000143194454651691}
+  leftBooster: {fileID: 8495737519267008731}
+  rightBooster: {fileID: 2550014339262570904}
 --- !u!82 &1399473259
 AudioSource:
   m_ObjectHideFlags: 0
@@ -893,6 +895,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4021296802695634, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
   m_PrefabInstance: {fileID: 2423486834922217806}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &2550014339262570904 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198876262804619478, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+  m_PrefabInstance: {fileID: 2423486834922217806}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3645342342274983380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1056,14 +1063,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
---- !u!4 &4311179668035452054 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4587786598044862, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
-  m_PrefabInstance: {fileID: 4306619371722696744}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4141999417155229646 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198009975391485926, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+  m_PrefabInstance: {fileID: 4306619371722696744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4311179668035452054 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4587786598044862, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
   m_PrefabInstance: {fileID: 4306619371722696744}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8585093075794415629
@@ -1075,7 +1082,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_Name
-      value: Right_FX_Exhaust_Trail
+      value: Left_FX_Exhaust_Trail
       objectReference: {fileID: 0}
     - target: {fileID: 4021296802695634, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_RootOrder
@@ -1126,6 +1133,11 @@ PrefabInstance:
 --- !u!4 &8586721766226942431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4021296802695634, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+  m_PrefabInstance: {fileID: 8585093075794415629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8495737519267008731 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198876262804619478, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
   m_PrefabInstance: {fileID: 8585093075794415629}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8807124147357248577
