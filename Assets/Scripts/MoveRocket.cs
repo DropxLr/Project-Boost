@@ -54,8 +54,30 @@ public class MoveRocket : MonoBehaviour
             rb.freezeRotation = true; //freezes rotation (physics) so you can manually rotate
             GetComponent<Transform>().Rotate(Vector3.back * pitch.x * pitchForce);
             rb.freezeRotation = false; //enables rotation again so that physics can apply rotation again
-            Debug.Log(pitch);
+            
+            if (Gamepad.current.leftStick.x.ReadValue() < 0 && thrustEnabled) // can this be tidier, bit buggy - needs tuning
+            {
+                rightBooster.Play();
+            }
+
+            else
+            {
+                rightBooster.Stop();
+            }
+
+            if (Gamepad.current.leftStick.x.ReadValue() > 0 && thrustEnabled)
+            {
+                leftBooster.Play();
+            }
+
+            else
+            {
+                leftBooster.Stop();
+            }
+
         }
+
+
 
         //Thrust
         if (thrustEnabled)
