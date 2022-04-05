@@ -48,42 +48,24 @@ public class MoveRocket : MonoBehaviour
 
     void Update()
     {
-        //Pitch
+        processPitch();
+        fireMainThruster();
+        fireSideBoosters();
+
+    }
+
+    void processPitch()
+    {
         if (pitchEnabled)
         {
             rb.freezeRotation = true; //freezes rotation (physics) so you can manually rotate
             GetComponent<Transform>().Rotate(Vector3.back * pitch.x * pitchForce);
             rb.freezeRotation = false; //enables rotation again so that physics can apply rotation again
-
-            if (Gamepad.current.leftStick.x.ReadValue() < 0) 
-            {
-                if (!rightBooster.isPlaying)
-                {
-                    rightBooster.Play();
-                }
-            }
-            else
-            {
-                rightBooster.Stop();
-            }
-
-            if (Gamepad.current.leftStick.x.ReadValue() > 0)
-            {
-                if (!leftBooster.isPlaying)
-                {
-                    leftBooster.Play();
-                }
-            }
-            else
-            {
-                leftBooster.Stop();
-            }
-
         }
+    }
 
-
-
-        //Thrust
+    void fireMainThruster()
+    {
         if (thrustEnabled)
         {
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
@@ -99,7 +81,33 @@ public class MoveRocket : MonoBehaviour
             audioSource.Stop();
             mainBooster.Stop();
         };
+    }
 
+    void fireSideBoosters()
+    {
+        if (Gamepad.current.leftStick.x.ReadValue() < 0)
+        {
+            if (!rightBooster.isPlaying)
+            {
+                rightBooster.Play();
+            }
+        }
+        else
+        {
+            rightBooster.Stop();
+        }
+
+        if (Gamepad.current.leftStick.x.ReadValue() > 0)
+        {
+            if (!leftBooster.isPlaying)
+            {
+                leftBooster.Play();
+            }
+        }
+        else
+        {
+            leftBooster.Stop();
+        }
     }
 
     void OnEnable()
