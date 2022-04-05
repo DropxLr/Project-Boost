@@ -85,7 +85,7 @@ public class MoveRocket : MonoBehaviour
 
     void fireSideBoosters()
     {
-        if (Gamepad.current.leftStick.x.ReadValue() < 0)
+        if (Gamepad.current.leftStick.x.ReadValue() < 0 || Keyboard.current.aKey.isPressed)
         {
             if (!rightBooster.isPlaying)
             {
@@ -97,7 +97,7 @@ public class MoveRocket : MonoBehaviour
             rightBooster.Stop();
         }
 
-        if (Gamepad.current.leftStick.x.ReadValue() > 0)
+        if (Gamepad.current.leftStick.x.ReadValue() > 0 || Keyboard.current.dKey.isPressed)
         {
             if (!leftBooster.isPlaying)
             {
