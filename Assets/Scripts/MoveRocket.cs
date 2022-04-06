@@ -10,6 +10,9 @@ public class MoveRocket : MonoBehaviour
 
     bool thrustEnabled; // the thrust button is pressed
     bool pitchEnabled; // pitch is active
+    bool debugCollisionDisabled; // debug mode - collision disabled
+
+    bool collisionDisabled = false;
 
     Rigidbody rb;
     public float mainThrust = 1000f; //needs tuning with gravity, mass & drag
@@ -21,13 +24,15 @@ public class MoveRocket : MonoBehaviour
     public ParticleSystem leftBooster;
     public ParticleSystem rightBooster;
 
-    private void Start()
+    public CollisionHandler collisionHandler;
+
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Awake()
+    void Awake()
     {
 
         controls = new RocketControls();
@@ -44,6 +49,11 @@ public class MoveRocket : MonoBehaviour
         controls.RocketMovement.Pitch.performed += cntxt => pitchEnabled = true;
         controls.RocketMovement.Pitch.canceled += cntxt => pitchEnabled = false;
 
+        //Debug Next Level Enabled
+        controls.RocketMovement.Debug_NextLevel.performed += OnNextLevel;
+
+        //Debug Collision Disabled
+        controls.RocketMovement.Debug_CollisionDisabled.performed += OnCollisionDisable;
     }
 
     void Update()
@@ -51,8 +61,18 @@ public class MoveRocket : MonoBehaviour
         processPitch();
         fireMainThruster();
         fireSideBoosters();
-
     }
+
+    void OnNextLevel(InputAction.CallbackContext cntxt)
+    {
+        collisionHandler.LoadNextScene();
+    }
+
+    void OnCollisionDisable(InputAction.CallbackContext cntxtr)
+    {
+        collisionHandler.ignoreCollisions = !collisionHandler.ignoreCollisions;
+    }
+
 
     void processPitch()
     {
@@ -109,6 +129,9 @@ public class MoveRocket : MonoBehaviour
             leftBooster.Stop();
         }
     }
+
+
+
 
     void OnEnable()
     {

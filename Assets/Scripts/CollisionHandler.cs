@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class CollisionHandler : MonoBehaviour
 {
     public float loadDelay = 2f;
-    float debugLoadDelay = 0.5f;
     public AudioClip success;
     public AudioClip crashExplosion;
     public ParticleSystem explosionParticles;
@@ -14,34 +13,18 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
     bool isTransitioning = false;
-    bool collisionDisabled = false;
+    // bool collisionDisabled = false;
+
+    public bool ignoreCollisions;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    void FixedUpdate()
-    {
-        activateDebugKeys();
-    }
-
-    void activateDebugKeys()
-    {
-        if (Keyboard.current.lKey.isPressed || Gamepad.current.buttonNorth.isPressed)
-        {
-            Util.DelayedCall(this, debugLoadDelay, () => { LoadNextScene(); });
-        }
-
-        if (Keyboard.current.cKey.isPressed || Gamepad.current.buttonWest.isPressed)
-        {
-            Util.DelayedCall(this, debugLoadDelay, () => { collisionDisabled = !collisionDisabled; });  //toggle collision
-        }
-    }
-
     void OnCollisionEnter(Collision other) // behaviour when colliding with gameObjects 
     {
-        if (isTransitioning || collisionDisabled) { return; } //stops triggering if sequence is already running
+        if (isTransitioning || ignoreCollisions) { return; } //stops triggering if sequence is already running
 
         switch (other.gameObject.tag) //uses tags to trigger action
         {
@@ -59,7 +42,7 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    void StartSuccessSequence() // can trigger crash sound if it slips
+    private void StartSuccessSequence() // can trigger crash sound if it slips
     {
         isTransitioning = true;
         audioSource.Stop();
@@ -70,7 +53,7 @@ public class CollisionHandler : MonoBehaviour
         Util.DelayedCall(this, loadDelay, () => { LoadNextScene(); });
     }
 
-    void StartCrashSequence()
+    private void StartCrashSequence()
     {
         isTransitioning = true;
         audioSource.Stop();
@@ -82,13 +65,13 @@ public class CollisionHandler : MonoBehaviour
         Util.DelayedCall(this, loadDelay, () => { ReloadScene(); });
     }
 
-    void ReloadScene() //reloads current scene when colliding with anything untagged in the switch statements above
+    private void ReloadScene() //reloads current scene when colliding with anything untagged in the switch statements above
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    void LoadNextScene() //loads next scene in the build index (see build settings)
+    public void LoadNextScene() //loads next scene in the build index (see build settings)
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;

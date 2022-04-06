@@ -44,6 +44,24 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Debug_NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""897799de-4c02-4101-9720-f8df4c11cdcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Debug_CollisionDisabled"",
+                    ""type"": ""Button"",
+                    ""id"": ""b28f4e45-1c06-4e45-bd23-a8027a6b65a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,50 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2af4d1e2-bcc3-46db-bdde-012864dc69f4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug_NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd1eed73-80bd-4637-b1b5-73b172d7e124"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug_NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19ff88a2-919f-46b0-9711-620b0911e11a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug_CollisionDisabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afa104f3-dd72-4778-bb79-5d59a2908e5b"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug_CollisionDisabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +184,8 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
         m_RocketMovement = asset.FindActionMap("RocketMovement", throwIfNotFound: true);
         m_RocketMovement_Thrust = m_RocketMovement.FindAction("Thrust", throwIfNotFound: true);
         m_RocketMovement_Pitch = m_RocketMovement.FindAction("Pitch", throwIfNotFound: true);
+        m_RocketMovement_Debug_NextLevel = m_RocketMovement.FindAction("Debug_NextLevel", throwIfNotFound: true);
+        m_RocketMovement_Debug_CollisionDisabled = m_RocketMovement.FindAction("Debug_CollisionDisabled", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +247,16 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
     private IRocketMovementActions m_RocketMovementActionsCallbackInterface;
     private readonly InputAction m_RocketMovement_Thrust;
     private readonly InputAction m_RocketMovement_Pitch;
+    private readonly InputAction m_RocketMovement_Debug_NextLevel;
+    private readonly InputAction m_RocketMovement_Debug_CollisionDisabled;
     public struct RocketMovementActions
     {
         private @RocketControls m_Wrapper;
         public RocketMovementActions(@RocketControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Thrust => m_Wrapper.m_RocketMovement_Thrust;
         public InputAction @Pitch => m_Wrapper.m_RocketMovement_Pitch;
+        public InputAction @Debug_NextLevel => m_Wrapper.m_RocketMovement_Debug_NextLevel;
+        public InputAction @Debug_CollisionDisabled => m_Wrapper.m_RocketMovement_Debug_CollisionDisabled;
         public InputActionMap Get() { return m_Wrapper.m_RocketMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +272,12 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
                 @Pitch.started -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnPitch;
                 @Pitch.performed -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnPitch;
                 @Pitch.canceled -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnPitch;
+                @Debug_NextLevel.started -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_NextLevel;
+                @Debug_NextLevel.performed -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_NextLevel;
+                @Debug_NextLevel.canceled -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_NextLevel;
+                @Debug_CollisionDisabled.started -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_CollisionDisabled;
+                @Debug_CollisionDisabled.performed -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_CollisionDisabled;
+                @Debug_CollisionDisabled.canceled -= m_Wrapper.m_RocketMovementActionsCallbackInterface.OnDebug_CollisionDisabled;
             }
             m_Wrapper.m_RocketMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +288,12 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
                 @Pitch.started += instance.OnPitch;
                 @Pitch.performed += instance.OnPitch;
                 @Pitch.canceled += instance.OnPitch;
+                @Debug_NextLevel.started += instance.OnDebug_NextLevel;
+                @Debug_NextLevel.performed += instance.OnDebug_NextLevel;
+                @Debug_NextLevel.canceled += instance.OnDebug_NextLevel;
+                @Debug_CollisionDisabled.started += instance.OnDebug_CollisionDisabled;
+                @Debug_CollisionDisabled.performed += instance.OnDebug_CollisionDisabled;
+                @Debug_CollisionDisabled.canceled += instance.OnDebug_CollisionDisabled;
             }
         }
     }
@@ -222,5 +302,7 @@ public partial class @RocketControls : IInputActionCollection2, IDisposable
     {
         void OnThrust(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
+        void OnDebug_NextLevel(InputAction.CallbackContext context);
+        void OnDebug_CollisionDisabled(InputAction.CallbackContext context);
     }
 }

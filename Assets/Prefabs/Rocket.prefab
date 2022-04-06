@@ -175,6 +175,7 @@ MonoBehaviour:
   mainBooster: {fileID: 2000143194454651691}
   leftBooster: {fileID: 8495737519267008731}
   rightBooster: {fileID: 2550014339262570904}
+  collisionHandler: {fileID: 1399473263}
 --- !u!82 &1399473259
 AudioSource:
   m_ObjectHideFlags: 0
