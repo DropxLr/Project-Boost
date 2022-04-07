@@ -10,9 +10,6 @@ public class MoveRocket : MonoBehaviour
 
     bool thrustEnabled; // the thrust button is pressed
     bool pitchEnabled; // pitch is active
-    bool debugCollisionDisabled; // debug mode - collision disabled
-
-    bool collisionDisabled = false;
 
     Rigidbody rb;
     public float mainThrust = 1000f; //needs tuning with gravity, mass & drag
@@ -68,7 +65,7 @@ public class MoveRocket : MonoBehaviour
         collisionHandler.LoadNextScene();
     }
 
-    void OnCollisionDisable(InputAction.CallbackContext cntxtr)
+    void OnCollisionDisable(InputAction.CallbackContext cntxt)
     {
         collisionHandler.ignoreCollisions = !collisionHandler.ignoreCollisions;
     }

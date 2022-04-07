@@ -13,7 +13,6 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
     bool isTransitioning = false;
-    // bool collisionDisabled = false;
 
     public bool ignoreCollisions;
 
