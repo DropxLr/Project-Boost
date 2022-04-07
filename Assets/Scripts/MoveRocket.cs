@@ -47,10 +47,10 @@ public class MoveRocket : MonoBehaviour
         controls.RocketMovement.Pitch.canceled += cntxt => pitchEnabled = false;
 
         //Debug Next Level Enabled
-        controls.RocketMovement.Debug_NextLevel.performed += OnNextLevel;
+        controls.RocketMovement.Debug_NextLevel.performed += onNextLevel;
 
         //Debug Collision Disabled
-        controls.RocketMovement.Debug_CollisionDisabled.performed += OnCollisionDisable;
+        controls.RocketMovement.Debug_CollisionDisabled.performed += onCollisionDisable;
     }
 
     void Update()
@@ -60,12 +60,12 @@ public class MoveRocket : MonoBehaviour
         fireSideBoosters();
     }
 
-    void OnNextLevel(InputAction.CallbackContext cntxt)
+    void onNextLevel(InputAction.CallbackContext cntxt)
     {
         collisionHandler.LoadNextScene();
     }
 
-    void OnCollisionDisable(InputAction.CallbackContext cntxt)
+    void onCollisionDisable(InputAction.CallbackContext cntxt)
     {
         collisionHandler.ignoreCollisions = !collisionHandler.ignoreCollisions;
     }
