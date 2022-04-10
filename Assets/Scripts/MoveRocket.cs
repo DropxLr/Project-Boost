@@ -31,7 +31,6 @@ public class MoveRocket : MonoBehaviour
 
     void Awake()
     {
-
         controls = new RocketControls();
 
         //Thrust
@@ -47,31 +46,30 @@ public class MoveRocket : MonoBehaviour
         controls.RocketMovement.Pitch.canceled += cntxt => pitchEnabled = false;
 
         //Debug Next Level Enabled
-        controls.RocketMovement.Debug_NextLevel.performed += onNextLevel;
+        controls.RocketMovement.Debug_NextLevel.performed += OnNextLevel;
 
         //Debug Collision Disabled
-        controls.RocketMovement.Debug_CollisionDisabled.performed += onCollisionDisable;
+        controls.RocketMovement.Debug_CollisionDisabled.performed += OnCollisionDisable;
     }
 
     void Update()
     {
-        processPitch();
-        fireMainThruster();
-        fireSideBoosters();
+        ProcessPitch();
+        FireMainThruster();
+        FireSideBoosters();
     }
 
-    void onNextLevel(InputAction.CallbackContext cntxt)
+    void OnNextLevel(InputAction.CallbackContext cntxt)
     {
         collisionHandler.LoadNextScene();
     }
 
-    void onCollisionDisable(InputAction.CallbackContext cntxt)
+    void OnCollisionDisable(InputAction.CallbackContext cntxt)
     {
         collisionHandler.ignoreCollisions = !collisionHandler.ignoreCollisions;
     }
 
-
-    void processPitch()
+    void ProcessPitch()
     {
         if (pitchEnabled)
         {
@@ -81,7 +79,7 @@ public class MoveRocket : MonoBehaviour
         }
     }
 
-    void fireMainThruster()
+    void FireMainThruster()
     {
         if (thrustEnabled)
         {
@@ -100,7 +98,7 @@ public class MoveRocket : MonoBehaviour
         };
     }
 
-    void fireSideBoosters()
+    void FireSideBoosters()
     {
         if (Gamepad.current.leftStick.x.ReadValue() < 0 || Keyboard.current.aKey.isPressed)
         {
@@ -127,9 +125,6 @@ public class MoveRocket : MonoBehaviour
         }
     }
 
-
-
-
     void OnEnable()
     {
         controls.RocketMovement.Enable();
@@ -139,8 +134,5 @@ public class MoveRocket : MonoBehaviour
     {
         controls.RocketMovement.Disable();
     }
-
-
-
 
 }
